@@ -1,0 +1,3 @@
+2024-07-09 12:19:14,450 - root - ERROR - Error extracting text from DOCX: Package not found at 'data/resume.docx'
+2024-07-09 12:19:14,450 - root - ERROR - Error extracting text from DOCX: Package not found at 'data/job_description.docx'
+2024-07-09 12:19:14,723 - openai - INFO - error_code=model_not_found error_message='The model `davinci-codex` has been deprecated, learn more here: https://platform.openai.com/docs/deprecations' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False

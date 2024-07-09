@@ -1,0 +1,7 @@
+2024-07-09 12:29:49,000 - root - ERROR - Error extracting text from DOCX: Package not found at 'data/resume.docx'
+2024-07-09 12:29:49,000 - root - ERROR - Error extracting text from DOCX: Package not found at 'data/job_description.docx'
+2024-07-09 12:29:49,182 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/completions "HTTP/1.1 429 Too Many Requests"
+2024-07-09 12:29:49,183 - openai._base_client - INFO - Retrying request to /completions in 0.877681 seconds
+2024-07-09 12:29:50,148 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/completions "HTTP/1.1 429 Too Many Requests"
+2024-07-09 12:29:50,149 - openai._base_client - INFO - Retrying request to /completions in 1.980526 seconds
+2024-07-09 12:29:52,220 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/completions "HTTP/1.1 429 Too Many Requests"

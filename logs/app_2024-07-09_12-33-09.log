@@ -1,0 +1,5 @@
+2024-07-09 12:33:10,346 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/completions "HTTP/1.1 429 Too Many Requests"
+2024-07-09 12:33:10,348 - openai._base_client - INFO - Retrying request to /completions in 0.849330 seconds
+2024-07-09 12:33:11,283 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/completions "HTTP/1.1 429 Too Many Requests"
+2024-07-09 12:33:11,284 - openai._base_client - INFO - Retrying request to /completions in 1.599628 seconds
+2024-07-09 12:33:12,994 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/completions "HTTP/1.1 429 Too Many Requests"
