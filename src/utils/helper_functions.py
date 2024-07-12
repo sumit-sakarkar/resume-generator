@@ -2,22 +2,6 @@ import docx
 import logging
 from src.logger import logger
 
-from transformers import T5Tokenizer, T5ForConditionalGeneration
-
-
-
-def initialize_t5_model():
-    """
-    Initialize the T5 tokenizer and model.
-    Returns:
-    - tokenizer (T5Tokenizer): Initialized T5 tokenizer.
-    - model (T5ForConditionalGeneration): Initialized T5 model.
-    """
-    tokenizer = T5Tokenizer.from_pretrained('t5-large')
-    model = T5ForConditionalGeneration.from_pretrained('t5-large')
-    return tokenizer, model
-
-
 def extract_text_from_docx(docx_file):
     """
     Extracts text content from a DOCX file.
@@ -38,6 +22,41 @@ def extract_text_from_docx(docx_file):
     except Exception as e:
         logger.error(f"Error extracting text from DOCX: {e}")
         return None
+
+def generate_resume_llama(original_resume_text, job_description_text, model, tokenizer):
+    # Define the prompt combining original resume and job description
+    prompt = f"Original Resume:\n{original_resume_text}\n\nJob Description:\n{job_description_text}\n\nGenerated Resume:"
+
+    # Encode the prompt
+    inputs = tokenizer(prompt, return_tensors="pt")
+
+    # Generate text
+    outputs = model.generate(**inputs, max_length=500)
+
+    # Decode the generated text
+    generated_resume = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    
+    return generated_resume
+
+
+
+
+
+
+#  Unused scripts
+'''
+def initialize_t5_model():
+    """
+    Initialize the T5 tokenizer and model.
+    Returns:
+    - tokenizer (T5Tokenizer): Initialized T5 tokenizer.
+    - model (T5ForConditionalGeneration): Initialized T5 model.
+    """
+    tokenizer = T5Tokenizer.from_pretrained('t5-large')
+    model = T5ForConditionalGeneration.from_pretrained('t5-large')
+    return tokenizer, model
+
+'''
 
 def generate_resume(original_resume_text, job_description_text,openai):
     """

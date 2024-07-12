@@ -1,28 +1,32 @@
 import openai 
-from artifacts.api_key import api_key
-api_key = api_key
 
-openai.api_key = api_key
+from src.logger import logger
+# Load model directly
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 from src.utils.helper_functions import extract_text_from_docx as extract
-
-from transformers import T5Tokenizer, T5ForConditionalGeneration
-from src.utils.helper_functions import initialize_t5_model
-from src.utils.helper_functions import update_resume
+from src.utils.helper_functions import generate_resume_llama
 
 def main():
     file = "data/resume.docx"
     text = extract(docx_file=file)
     file = "data/job_description.docx"
     JD = extract(docx_file=file)
-    tokenizer, model = initialize_t5_model()
-    # Update the resume based on job description
-    updated_resume = update_resume(text, JD, tokenizer, model)
+
+    tokenizer = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B",token = "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")
+    model = AutoModelForCausalLM.from_pretrained("meta-llama/Meta-Llama-3-8B",token = "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")
+
+    # Generate updated resume based on the job description
+    generated_resume = generate_resume_llama(text, JD, model, tokenizer)
+
+    # Log the result
+    logger("Resume : content created")
 
     # Print or use updated resume
     print("Updated Resume:")
-    print(updated_resume)
+    print(generated_resume)
 
 
 if __name__ == "__main__":
     main()
+
